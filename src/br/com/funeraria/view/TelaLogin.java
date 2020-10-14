@@ -53,6 +53,11 @@ public class TelaLogin extends javax.swing.JFrame {
         txtSenha.setMinimumSize(new java.awt.Dimension(6, 21));
 
         botEntrar.setText("Entrar");
+        botEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botEntrarActionPerformed(evt);
+            }
+        });
 
         botCadastro.setText("Cadastrar");
         botCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +117,12 @@ public class TelaLogin extends javax.swing.JFrame {
     private void botCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botCadastroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botCadastroActionPerformed
+
+    private void botEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botEntrarActionPerformed
+        if(txtLogin.getText().equals()){
+            
+        }
+    }//GEN-LAST:event_botEntrarActionPerformed
 
     /**
      * @param args the command line arguments
