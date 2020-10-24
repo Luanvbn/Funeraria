@@ -5,6 +5,8 @@
  */
 package br.com.funeraria.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luan
@@ -29,9 +31,9 @@ public class LoginTela extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         JLogin = new javax.swing.JButton();
-        JCadastro = new javax.swing.JButton();
+        JSair = new javax.swing.JButton();
         txtLogin = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -56,19 +58,29 @@ public class LoginTela extends javax.swing.JFrame {
                 JLoginActionPerformed(evt);
             }
         });
+        JLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JLoginKeyPressed(evt);
+            }
+        });
         getContentPane().add(JLogin);
-        JLogin.setBounds(110, 190, 65, 25);
+        JLogin.setBounds(110, 200, 65, 25);
 
-        JCadastro.setBackground(new java.awt.Color(34, 33, 59));
-        JCadastro.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        JCadastro.setForeground(new java.awt.Color(255, 255, 255));
-        JCadastro.setText("Cadastrar");
-        getContentPane().add(JCadastro);
-        JCadastro.setBounds(200, 190, 100, 25);
+        JSair.setBackground(new java.awt.Color(34, 33, 59));
+        JSair.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        JSair.setForeground(new java.awt.Color(255, 255, 255));
+        JSair.setText("Sair");
+        JSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JSair);
+        JSair.setBounds(200, 200, 100, 25);
         getContentPane().add(txtLogin);
-        txtLogin.setBounds(110, 110, 190, 20);
-        getContentPane().add(txtpassword);
-        txtpassword.setBounds(110, 160, 190, 20);
+        txtLogin.setBounds(110, 110, 190, 30);
+        getContentPane().add(txtPassword);
+        txtPassword.setBounds(110, 160, 190, 30);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,7 +96,7 @@ public class LoginTela extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/background.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 440, 350);
+        jLabel2.setBounds(0, -50, 440, 400);
 
         setSize(new java.awt.Dimension(416, 339));
         setLocationRelativeTo(null);
@@ -92,10 +104,23 @@ public class LoginTela extends javax.swing.JFrame {
 
     private void JLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLoginActionPerformed
         // TODO add your handling code here:
-       TelaPrincipal tela = new TelaPrincipal();
-       tela.setVisible(true);
-       dispose();
+        if(txtPassword.getText().equals("admin") && txtLogin.getText().equals("admin")) {
+            TelaPrincipal tela = new TelaPrincipal();
+            tela.setVisible(true);
+            dispose();
+        } else {JOptionPane.showMessageDialog(null, "Usuario ou senha está incorreto");
+    }
+        
     }//GEN-LAST:event_JLoginActionPerformed
+
+    private void JSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_JSairActionPerformed
+
+    private void JLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JLoginKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JLoginKeyPressed
 
     /**
      * @param args the command line arguments
@@ -131,13 +156,13 @@ public class LoginTela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JCadastro;
     private javax.swing.JButton JLogin;
+    private javax.swing.JButton JSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtLogin;
-    private javax.swing.JPasswordField txtpassword;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

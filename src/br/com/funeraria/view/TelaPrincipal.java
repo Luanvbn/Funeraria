@@ -5,6 +5,9 @@
  */
 package br.com.funeraria.view;
 
+import br.com.funeraria.controle.ConexaoBD;
+import static java.time.Clock.system;
+
 /**
  *
  * @author Luan
@@ -14,8 +17,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
+    ConexaoBD con = new ConexaoBD();
     public TelaPrincipal() {
         initComponents();
+        con.conexao();
     }
 
     /**
@@ -27,22 +32,226 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelInternal = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonCadCliente = new javax.swing.JButton();
+        jButtonCadUsuario = new javax.swing.JButton();
+        jButtonCadMedico = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButtonFechar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuCadastro = new javax.swing.JMenu();
+        CadCliente = new javax.swing.JMenuItem();
+        CadUsuario = new javax.swing.JMenuItem();
+        CadConvenio = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jTelaBV = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jSair = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jInternalFrame1.setTitle("Bem-Vindo");
+        jInternalFrame1.setVisible(true);
+        jInternalFrame1.getContentPane().setLayout(null);
 
-        setSize(new java.awt.Dimension(416, 339));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel1.setText("Sistema de gerenciamento de:");
+        jInternalFrame1.getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 330, 30);
+
+        jPanelInternal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanelInternal.setLayout(null);
+
+        jLabel3.setText("Cadastros -");
+        jPanelInternal.add(jLabel3);
+        jLabel3.setBounds(10, 10, 70, 14);
+
+        jButtonCadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/user (1).png"))); // NOI18N
+        jButtonCadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadClienteActionPerformed(evt);
+            }
+        });
+        jPanelInternal.add(jButtonCadCliente);
+        jButtonCadCliente.setBounds(10, 30, 80, 60);
+
+        jButtonCadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/multiple-users-silhouette (2).png"))); // NOI18N
+        jButtonCadUsuario.setPreferredSize(new java.awt.Dimension(65, 41));
+        jPanelInternal.add(jButtonCadUsuario);
+        jButtonCadUsuario.setBounds(90, 30, 80, 60);
+
+        jButtonCadMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/doctor (1).png"))); // NOI18N
+        jPanelInternal.add(jButtonCadMedico);
+        jButtonCadMedico.setBounds(170, 30, 80, 60);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/checklist.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelInternal.add(jButton1);
+        jButton1.setBounds(250, 30, 80, 60);
+
+        jLabel4.setText("Usuario");
+        jPanelInternal.add(jLabel4);
+        jLabel4.setBounds(30, 90, 50, 14);
+
+        jLabel5.setText("Clientes");
+        jPanelInternal.add(jLabel5);
+        jLabel5.setBounds(110, 90, 50, 14);
+
+        jLabel6.setText("Convenio");
+        jPanelInternal.add(jLabel6);
+        jLabel6.setBounds(190, 90, 60, 14);
+
+        jLabel7.setText("Planos");
+        jPanelInternal.add(jLabel7);
+        jLabel7.setBounds(270, 90, 50, 14);
+
+        jInternalFrame1.getContentPane().add(jPanelInternal);
+        jPanelInternal.setBounds(0, 30, 700, 180);
+
+        jButtonFechar.setText("X");
+        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharActionPerformed(evt);
+            }
+        });
+        jInternalFrame1.getContentPane().add(jButtonFechar);
+        jButtonFechar.setBounds(650, 3, 40, 20);
+
+        getContentPane().add(jInternalFrame1);
+        jInternalFrame1.setBounds(0, 50, 710, 240);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/background.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, -30, 870, 350);
+
+        jMenuCadastro.setText("Cadastros");
+
+        CadCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        CadCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/client-icon.png"))); // NOI18N
+        CadCliente.setText("Cliente");
+        CadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadClienteActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(CadCliente);
+
+        CadUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        CadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/user-icon.png"))); // NOI18N
+        CadUsuario.setText("Usuario");
+        CadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadUsuarioActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(CadUsuario);
+
+        CadConvenio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        CadConvenio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/doctor-icon.png"))); // NOI18N
+        CadConvenio.setText("Convenio");
+        jMenuCadastro.add(CadConvenio);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/plan-icon.png"))); // NOI18N
+        jMenuItem2.setText("Plano");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItem2);
+
+        jMenuBar1.add(jMenuCadastro);
+
+        jTelaBV.setText("Ferramentas");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/desktop-monitor.png"))); // NOI18N
+        jMenuItem1.setText("Tela Bem-Vindo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jTelaBV.add(jMenuItem1);
+
+        jMenuBar1.add(jTelaBV);
+
+        jMenu1.setText("Sair");
+
+        jSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jSair.setText("Sair");
+        jSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jSair);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
+        setSize(new java.awt.Dimension(723, 344));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CadClienteActionPerformed
+
+    private void CadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadUsuarioActionPerformed
+        // TODO add your handling code here:
+        CadUsuario user = new CadUsuario();
+        user.setVisible(true);
+    }//GEN-LAST:event_CadUsuarioActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSairActionPerformed
+        // TODO add your handling code here:
+        con.desconecta();
+        System.exit(0);
+    }//GEN-LAST:event_jSairActionPerformed
+
+    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+        // TODO add your handling code here:
+        jInternalFrame1.dispose();
+    }//GEN-LAST:event_jButtonFecharActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadClienteActionPerformed
+        // TODO add your handling code here:
+        CadUsuario user = new CadUsuario();
+        user.setVisible(true);
+    }//GEN-LAST:event_jButtonCadClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +289,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CadCliente;
+    private javax.swing.JMenuItem CadConvenio;
+    private javax.swing.JMenuItem CadUsuario;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonCadCliente;
+    private javax.swing.JButton jButtonCadMedico;
+    private javax.swing.JButton jButtonCadUsuario;
+    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuCadastro;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanelInternal;
+    private javax.swing.JMenuItem jSair;
+    private javax.swing.JMenu jTelaBV;
     // End of variables declaration//GEN-END:variables
 }
