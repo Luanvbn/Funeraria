@@ -9,7 +9,7 @@ package br.com.funeraria.model;
  *
  * @author Luan
  */
-public class ModelEndereco{
+public class ModelEndereco extends ModelPessoa{
 
     /**
      * @return the id_endereco
@@ -24,6 +24,6 @@ public class ModelEndereco{
     public void setId_endereco(int id_endereco) {
         this.id_endereco = id_endereco;
     }
-    private int id_endereco;
+    private int id_endereco ;
     
 }

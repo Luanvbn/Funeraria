@@ -9,7 +9,7 @@ package br.com.funeraria.model;
  *
  * @author Luan
  */
-public class ModelNumero {
+public class ModelNumero extends ModelPessoa {
 
     /**
      * @return the id_numero
