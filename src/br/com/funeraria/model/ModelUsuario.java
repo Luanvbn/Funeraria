@@ -11,6 +11,13 @@ package br.com.funeraria.model;
  */
 public class ModelUsuario extends ModelPessoa {
 
+
+    private int id_usuario;
+    private ModelEndereco id_endereco_fk;
+    private ModelNumero id_numero_fk;
+    private String login;
+    private String senha;
+
     /**
      * @return the id_usuario
      */
@@ -53,8 +60,32 @@ public class ModelUsuario extends ModelPessoa {
         this.id_numero_fk = id_numero_fk;
     }
 
-    private int id_usuario;
-    private ModelEndereco id_endereco_fk;
-    private ModelNumero id_numero_fk;
+    /**
+     * @return the login
+     */
+    public String getLogin() {
+        return login;
+    }
+
+    /**
+     * @param login the login to set
+     */
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    /**
+     * @return the senha
+     */
+    public String getSenha() {
+        return senha;
+    }
+
+    /**
+     * @param senha the senha to set
+     */
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     
 }

@@ -108,7 +108,8 @@ public class LoginTela extends javax.swing.JFrame {
             TelaPrincipal tela = new TelaPrincipal();
             tela.setVisible(true);
             dispose();
-        } else {JOptionPane.showMessageDialog(null, "Usuario ou senha está incorreto"); dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario ou senha está incorreto"); 
     }
         
     }//GEN-LAST:event_JLoginActionPerformed

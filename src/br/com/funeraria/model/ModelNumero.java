@@ -11,6 +11,10 @@ package br.com.funeraria.model;
  */
 public class ModelNumero extends ModelPessoa {
 
+    
+    private int id_numero;
+    private int telefone;
+
     /**
      * @return the id_numero
      */
@@ -24,6 +28,21 @@ public class ModelNumero extends ModelPessoa {
     public void setId_numero(int id_numero) {
         this.id_numero = id_numero;
     }
-    private int id_numero;
+
+    /**
+     * @return the telefone
+     */
+    public int getTelefone() {
+        return telefone;
+    }
+
+    /**
+     * @param telefone the telefone to set
+     */
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
+    }
+    
+    
     
 }

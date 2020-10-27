@@ -11,9 +11,15 @@ package br.com.funeraria.model;
  */
 public class ModelPessoa {
 
-    /**
-     * @return the codigo
-     */
+  
+    private String nome;
+    private int cpf;
+    private String nascimento;
+    private String sexo;
+    private int CEP;
+    private int numero;
+    private ModelEndereco endereco;
+    private ModelNumero telefone;
 
     /**
      * @return the nome
@@ -58,34 +64,6 @@ public class ModelPessoa {
     }
 
     /**
-     * @return the login
-     */
-    public String getLogin() {
-        return login;
-    }
-
-    /**
-     * @param login the login to set
-     */
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    /**
-     * @return the senha
-     */
-    public String getSenha() {
-        return senha;
-    }
-
-    /**
-     * @param senha the senha to set
-     */
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    /**
      * @return the sexo
      */
     public String getSexo() {
@@ -97,20 +75,6 @@ public class ModelPessoa {
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
-    }
-
-    /**
-     * @return the bairro
-     */
-    public String getBairro() {
-        return bairro;
-    }
-
-    /**
-     * @param bairro the bairro to set
-     */
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
     }
 
     /**
@@ -128,34 +92,6 @@ public class ModelPessoa {
     }
 
     /**
-     * @return the cidade
-     */
-    public String getCidade() {
-        return cidade;
-    }
-
-    /**
-     * @param cidade the cidade to set
-     */
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    /**
-     * @return the complemento
-     */
-    public String getComplemento() {
-        return complemento;
-    }
-
-    /**
-     * @param complemento the complemento to set
-     */
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    /**
      * @return the numero
      */
     public int getNumero() {
@@ -170,44 +106,35 @@ public class ModelPessoa {
     }
 
     /**
-     * @return the rua
+     * @return the endereco
      */
-    public String getRua() {
-        return rua;
+    public ModelEndereco getEndereco() {
+        return endereco;
     }
 
     /**
-     * @param rua the rua to set
+     * @param endereco the endereco to set
      */
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setEndereco(ModelEndereco endereco) {
+        this.endereco = endereco;
     }
 
     /**
      * @return the telefone
      */
-    public int getTelefone() {
+    public ModelNumero getTelefone() {
         return telefone;
     }
 
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(int telefone) {
+    public void setTelefone(ModelNumero telefone) {
         this.telefone = telefone;
     }
-    private String nome;
-    private int cpf;
-    private String nascimento;
-    private String login;
-    private String senha;
-    private String sexo;
-    private String bairro;
-    private int CEP;
-    private String cidade;
-    private String complemento;
-    private int numero;
-    private String rua;
-    private int telefone;
+
+    
+
+   
     
 }

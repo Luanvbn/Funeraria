@@ -25,7 +25,7 @@ public class ControleUsuario {
     public void salvar(ModelUsuario mod){
         conex.conexao();
         try {
-            PreparedStatement pst = conex.con.prepareStatement("INSERT INTO cadusuario(nome, login, senha, cpf, endereco_fk, Numero_fk, sexo, idade) VALUES (?,?,?,?,?,?) " + "INSERT INTO endereco(Bairro, CEP, cidade, complemento, numero, Rua) VALUES (?,?,?,?,?,?,?,?)");
+            PreparedStatement pst = conex.con.prepareStatement("INSERT INTO cadusuario(nome, login, senha, cpf, endereco_fk, Numero_fk, sexo, idade) VALUES (?,?,?,?,?,?)");
             pst.setString(1, mod.getNome());
             pst.setString(2, mod.getLogin());
             pst.setString(3, mod.getSenha());
@@ -46,6 +46,9 @@ public class ControleUsuario {
             pst.execute();
             ptt.execute();
             pto.execute();
+            pst.close();
+            ptt.close();
+            ptt.close();
             JOptionPane.showMessageDialog(null,"Usuario Cadastrado com Sucesso!!!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Usuario não cadastrado!!! ERRO: \n" +  ex);
