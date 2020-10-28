@@ -5,6 +5,9 @@
  */
 package br.com.funeraria.view;
 
+import br.com.funeraria.controle.*;
+import br.com.funeraria.model.Usuario;
+
 /**
  *
  * @author Luan
@@ -14,6 +17,9 @@ public class CadUsuario extends javax.swing.JFrame {
     /**
      * Creates new form CadUsuario
      */
+    Usuario user = new Usuario();
+    ConexaoBD con = new ConexaoBD();
+    UsuarioDAO control =  new UsuarioDAO();
     public CadUsuario() {
         initComponents();
     }
@@ -62,6 +68,11 @@ public class CadUsuario extends javax.swing.JFrame {
 
         jButtonCadastrar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCadastrar.setText("Cadastrar");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
 
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
         jButtonSair.setText("Sair");
@@ -126,6 +137,12 @@ public class CadUsuario extends javax.swing.JFrame {
     private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSenhaActionPerformed
+
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        user.setUsuario(jTextFieldUsuario.getText());
+        user.setSenha(jTextFieldSenha.getText());
+        control.salvar(user);
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     /**
      * @param args the command line arguments

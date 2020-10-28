@@ -19,18 +19,18 @@ public class ConexaoBD {
         try {
             System.setProperty("jdbc.Drivers", driver);
             con = DriverManager.getConnection(caminho , usuario, senha);
-            JOptionPane.showMessageDialog(null, "Bem-Vindo ao Sistema da Funeraria");
+            //JOptionPane.showMessageDialog(null, "Bem-Vindo ao Sistema da Funeraria");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao se conectar com o banco de Dados:\n" + ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Erro ao se conectar com o banco de Dados:\n" + ex.getMessage());
      
         }
     }
     public void desconecta(){ // metodo responsavel por desconectar o Banco de dados ao fechar o app!!
         try {
             con.close();
-            JOptionPane.showMessageDialog(null, "BD Desconectado com sucesso!");
+////////          //  JOptionPane.showMessageDialog(null, "BD Desconectado com sucesso!");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao fechar conexao com BD: \n" +  ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Erro ao fechar conexao com BD: \n" +  ex.getMessage());
         }
     }
         
