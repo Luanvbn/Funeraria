@@ -64,7 +64,7 @@ public class LoginTela extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JLogin);
-        JLogin.setBounds(110, 200, 65, 25);
+        JLogin.setBounds(110, 200, 66, 27);
 
         JSair.setBackground(new java.awt.Color(34, 33, 59));
         JSair.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -76,7 +76,7 @@ public class LoginTela extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JSair);
-        JSair.setBounds(200, 200, 100, 25);
+        JSair.setBounds(200, 200, 100, 27);
         getContentPane().add(txtLogin);
         txtLogin.setBounds(110, 110, 190, 30);
         getContentPane().add(txtPassword);
