@@ -9,17 +9,14 @@ package br.com.funeraria.model;
  *
  * @author Luan
  */
-public class ModelPessoa {
+public class Pessoa {
 
   
     private String nome;
-    private int cpf;
+    private String cpf;
     private String nascimento;
     private String sexo;
-    private int CEP;
     private int numero;
-    private ModelEndereco endereco;
-    private ModelNumero telefone;
 
     /**
      * @return the nome
@@ -38,14 +35,14 @@ public class ModelPessoa {
     /**
      * @return the cpf
      */
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -78,20 +75,6 @@ public class ModelPessoa {
     }
 
     /**
-     * @return the CEP
-     */
-    public int getCEP() {
-        return CEP;
-    }
-
-    /**
-     * @param CEP the CEP to set
-     */
-    public void setCEP(int CEP) {
-        this.CEP = CEP;
-    }
-
-    /**
      * @return the numero
      */
     public int getNumero() {
@@ -105,36 +88,4 @@ public class ModelPessoa {
         this.numero = numero;
     }
 
-    /**
-     * @return the endereco
-     */
-    public ModelEndereco getEndereco() {
-        return endereco;
-    }
-
-    /**
-     * @param endereco the endereco to set
-     */
-    public void setEndereco(ModelEndereco endereco) {
-        this.endereco = endereco;
-    }
-
-    /**
-     * @return the telefone
-     */
-    public ModelNumero getTelefone() {
-        return telefone;
-    }
-
-    /**
-     * @param telefone the telefone to set
-     */
-    public void setTelefone(ModelNumero telefone) {
-        this.telefone = telefone;
-    }
-
-    
-
-   
-    
 }

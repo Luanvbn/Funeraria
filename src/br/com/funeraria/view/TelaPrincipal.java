@@ -5,6 +5,7 @@
  */
 package br.com.funeraria.view;
 
+
 import br.com.funeraria.controle.ConexaoBD;
 import static java.time.Clock.system;
 
@@ -17,10 +18,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
-    ConexaoBD con = new ConexaoBD();
+   ConexaoBD con = new ConexaoBD();
     public TelaPrincipal() {
         initComponents();
-        con.conexao();
+       
     }
 
     /**

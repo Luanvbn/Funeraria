@@ -6,16 +6,19 @@
 package br.com.funeraria.view;
 
 import javax.swing.JOptionPane;
+import br.com.funeraria.controle.ConexaoBD;
 
 /**
  *
  * @author Luan
  */
 public class LoginTela extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form LoginTela
      */
+    ConexaoBD con = new ConexaoBD();
     public LoginTela() {
         initComponents();
     }
@@ -107,6 +110,7 @@ public class LoginTela extends javax.swing.JFrame {
         if(txtPassword.getText().equals("admin") && txtLogin.getText().equals("admin")) {
             TelaPrincipal tela = new TelaPrincipal();
             tela.setVisible(true);
+            con.conexao();
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Usuario ou senha está incorreto"); 
