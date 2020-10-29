@@ -39,7 +39,7 @@ public class LoginTela extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -67,7 +67,7 @@ public class LoginTela extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JLogin);
-        JLogin.setBounds(110, 200, 66, 27);
+        JLogin.setBounds(110, 200, 65, 25);
 
         JSair.setBackground(new java.awt.Color(34, 33, 59));
         JSair.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -79,7 +79,7 @@ public class LoginTela extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JSair);
-        JSair.setBounds(200, 200, 100, 27);
+        JSair.setBounds(200, 200, 100, 25);
         getContentPane().add(txtLogin);
         txtLogin.setBounds(110, 110, 190, 30);
         getContentPane().add(txtPassword);
@@ -97,9 +97,9 @@ public class LoginTela extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(110, 140, 80, 18);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/background.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, -50, 440, 400);
+        jPanel1.setBackground(new java.awt.Color(42, 36, 64));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(-10, -10, 420, 360);
 
         setSize(new java.awt.Dimension(416, 339));
         setLocationRelativeTo(null);
@@ -164,9 +164,9 @@ public class LoginTela extends javax.swing.JFrame {
     private javax.swing.JButton JLogin;
     private javax.swing.JButton JSair;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
