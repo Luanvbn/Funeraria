@@ -8,8 +8,6 @@ package br.com.funeraria.controle;
 import br.com.funeraria.model.Usuario;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

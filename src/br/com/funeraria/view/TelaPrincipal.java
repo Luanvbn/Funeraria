@@ -89,6 +89,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonCadUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/multiple-users-silhouette (2).png"))); // NOI18N
         jButtonCadUsuario.setPreferredSize(new java.awt.Dimension(65, 41));
+        jButtonCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadUsuarioActionPerformed(evt);
+            }
+        });
         jPanelInternal.add(jButtonCadUsuario);
         jButtonCadUsuario.setBounds(90, 30, 80, 60);
 
@@ -214,6 +219,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void CadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadClienteActionPerformed
         // TODO add your handling code here:
+        CadCliente cliente = new CadCliente();
+        cliente.setVisible(true);
     }//GEN-LAST:event_CadClienteActionPerformed
 
     private void CadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadUsuarioActionPerformed
@@ -253,6 +260,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadUsuario user = new CadUsuario();
         user.setVisible(true);
     }//GEN-LAST:event_jButtonCadClienteActionPerformed
+
+    private void jButtonCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadUsuarioActionPerformed
+        // TODO add your handling code here:
+        CadCliente cliente =  new CadCliente();
+        cliente.setVisible(true);
+    }//GEN-LAST:event_jButtonCadUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
