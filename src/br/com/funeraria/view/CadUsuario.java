@@ -67,6 +67,7 @@ public class CadUsuario extends javax.swing.JFrame {
         });
 
         jButtonCadastrar.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCadastrar.setText("Cadastrar");
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +76,7 @@ public class CadUsuario extends javax.swing.JFrame {
         });
 
         jButtonSair.setBackground(new java.awt.Color(0, 0, 0));
+        jButtonSair.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSair.setText("Sair");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/Logo-.png"))); // NOI18N

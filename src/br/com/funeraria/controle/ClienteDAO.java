@@ -23,8 +23,7 @@ public class ClienteDAO {
         conex.conexao();
         PreparedStatement pst;
         try {
-            pst = (PreparedStatement) conex.con.prepareStatement("INSERT INTO usuario(nome, nascimento, cpf, sexo, telefone,"
-                    + "rua, bairro, numero, cidade, cep, idPlano) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            pst = (PreparedStatement) conex.con.prepareStatement("INSERT INTO usuario(Nome, nascimento, cpf, sexo, telefone, rua, bairro, numero, cidade, cep, idPlano) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             pst.setString(1, cliente.getNome());
             pst.setString(2, cliente.getNascimento());
             pst.setString(3, cliente.getCpf());

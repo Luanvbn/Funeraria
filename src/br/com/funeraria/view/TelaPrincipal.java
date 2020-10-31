@@ -98,6 +98,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButtonCadUsuario.setBounds(90, 30, 80, 60);
 
         jButtonCadMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/doctor (1).png"))); // NOI18N
+        jButtonCadMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadMedicoActionPerformed(evt);
+            }
+        });
         jPanelInternal.add(jButtonCadMedico);
         jButtonCadMedico.setBounds(170, 30, 80, 60);
 
@@ -170,6 +175,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadConvenio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         CadConvenio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/funeraria/imagens/doctor-icon.png"))); // NOI18N
         CadConvenio.setText("Convenio");
+        CadConvenio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadConvenioActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(CadConvenio);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
@@ -238,8 +248,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSairActionPerformed
         // TODO add your handling code here:
-        con.desconecta();
         System.exit(0);
+        con.desconecta();
     }//GEN-LAST:event_jSairActionPerformed
 
     private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
@@ -249,10 +259,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        CadPlano plan = new CadPlano();
+        plan.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        CadPlano plan = new CadPlano();
+        plan.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadClienteActionPerformed
@@ -266,6 +280,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadCliente cliente =  new CadCliente();
         cliente.setVisible(true);
     }//GEN-LAST:event_jButtonCadUsuarioActionPerformed
+
+    private void jButtonCadMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadMedicoActionPerformed
+        // TODO add your handling code here:
+        CadConvenio conv = new CadConvenio();
+        conv.setVisible(true);
+    }//GEN-LAST:event_jButtonCadMedicoActionPerformed
+
+    private void CadConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadConvenioActionPerformed
+        // TODO add your handling code here:
+        CadConvenio conv = new CadConvenio();
+        conv.setVisible(true);
+    }//GEN-LAST:event_CadConvenioActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,13 @@
  */
 package br.com.funeraria.view;
 
+import br.com.funeraria.controle.PlanoDAO;
+import br.com.funeraria.model.Plano;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo
@@ -13,7 +20,9 @@ public class CadPlano extends javax.swing.JFrame {
 
     /**
      * Creates new form CadPlano
-     */
+    */
+    PlanoDAO plan = new PlanoDAO();
+    Plano pl = new Plano();
     public CadPlano() {
         initComponents();
     }
@@ -28,22 +37,25 @@ public class CadPlano extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        Novo = new javax.swing.JButton();
+        Salvar = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
+        Excluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jEditorPane2 = new javax.swing.JEditorPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Descricao = new javax.swing.JEditorPane();
+        TipoPlano = new javax.swing.JTextField();
+        PesquisarTXTFIELD = new javax.swing.JTextField();
+        Pesquisar = new javax.swing.JButton();
+        Preco = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTablePesquisar = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
@@ -59,37 +71,121 @@ public class CadPlano extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(525, 490));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(36, 32, 58));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(null);
 
-        jButton1.setText("Novo");
+        Novo.setBackground(new java.awt.Color(0, 0, 0));
+        Novo.setForeground(new java.awt.Color(255, 255, 255));
+        Novo.setText("Novo");
+        Novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NovoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Novo);
+        Novo.setBounds(12, 34, 77, 23);
 
-        jButton2.setText("Salvar");
+        Salvar.setBackground(new java.awt.Color(0, 0, 0));
+        Salvar.setForeground(new java.awt.Color(255, 255, 255));
+        Salvar.setText("Salvar");
+        Salvar.setEnabled(false);
+        Salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalvarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Salvar);
+        Salvar.setBounds(12, 63, 77, 23);
 
-        jButton3.setText("Cancelar");
+        Cancelar.setBackground(new java.awt.Color(0, 0, 0));
+        Cancelar.setForeground(new java.awt.Color(255, 255, 255));
+        Cancelar.setText("Cancelar");
+        Cancelar.setEnabled(false);
+        jPanel1.add(Cancelar);
+        Cancelar.setBounds(12, 92, 75, 23);
 
-        jButton4.setText("Editar");
+        Editar.setBackground(new java.awt.Color(0, 0, 0));
+        Editar.setForeground(new java.awt.Color(255, 255, 255));
+        Editar.setText("Editar");
+        Editar.setEnabled(false);
+        jPanel1.add(Editar);
+        Editar.setBounds(12, 121, 77, 23);
 
-        jButton5.setText("Excluir");
+        Excluir.setBackground(new java.awt.Color(0, 0, 0));
+        Excluir.setForeground(new java.awt.Color(255, 255, 255));
+        Excluir.setText("Excluir");
+        Excluir.setEnabled(false);
+        jPanel1.add(Excluir);
+        Excluir.setBounds(12, 150, 77, 23);
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tipo do Plano:");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(240, 20, 108, 18);
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Descrição:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(210, 50, 79, 18);
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Preço:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(330, 190, 48, 18);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Descricao.setEnabled(false);
+        jScrollPane1.setViewportView(Descricao);
 
-        jEditorPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jEditorPane1);
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(300, 50, 200, 120);
 
-        jEditorPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setViewportView(jEditorPane2);
+        TipoPlano.setEnabled(false);
+        TipoPlano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoPlanoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(TipoPlano);
+        TipoPlano.setBounds(350, 10, 150, 30);
+        jPanel1.add(PesquisarTXTFIELD);
+        PesquisarTXTFIELD.setBounds(40, 200, 140, 30);
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Pesquisar.setBackground(new java.awt.Color(0, 0, 0));
+        Pesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        Pesquisar.setText("Pesquisar");
+        jPanel1.add(Pesquisar);
+        Pesquisar.setBounds(190, 200, 100, 30);
+
+        Preco.setEnabled(false);
+        jPanel1.add(Preco);
+        Preco.setBounds(380, 180, 100, 30);
+
+        jTablePesquisar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -100,101 +196,66 @@ public class CadPlano extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane4.setViewportView(jTablePesquisar);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel4)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(104, 104, 104))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2))))
-                    .addComponent(jButton3)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(108, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
+        jPanel1.add(jScrollPane4);
+        jScrollPane4.setBounds(42, 242, 450, 180);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 40, 523, 435);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Planos");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(230, 10, 50, 20);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222))
-        );
-
-        pack();
+        setSize(new java.awt.Dimension(531, 506));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TipoPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoPlanoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoPlanoActionPerformed
+
+    private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
+        // TODO add your handling code here:
+       TipoPlano.setEnabled(true);
+       Descricao.setEnabled(true);
+       Preco.setEnabled(true);
+       Salvar.setEnabled(true);
+       Cancelar.setEnabled(true);
+       Editar.setEnabled(true);
+       Excluir.setEnabled(true);
+    }//GEN-LAST:event_NovoActionPerformed
+
+    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
+        // TODO add your handling code here:
+        pl.setTipo_plano(TipoPlano.getText());
+        pl.setDescricao(Descricao.getText());
+        pl.setPreco(Double.parseDouble(Preco.getText()));
+        try {
+            plan.Salvar(pl);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+       
+        
+       TipoPlano.setText("");
+       Descricao.setText("");
+       Preco.setText("");
+       
+       TipoPlano.setEnabled(false);
+       Descricao.setEnabled(false);
+       Preco.setEnabled(false);
+       Salvar.setEnabled(false);
+       Cancelar.setEnabled(false);
+       Editar.setEnabled(false);
+       Excluir.setEnabled(false);
+       
+       
+       
+                
+    }//GEN-LAST:event_SalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,14 +296,16 @@ public class CadPlano extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JEditorPane jEditorPane2;
+    private javax.swing.JButton Cancelar;
+    private javax.swing.JEditorPane Descricao;
+    private javax.swing.JButton Editar;
+    private javax.swing.JButton Excluir;
+    private javax.swing.JButton Novo;
+    private javax.swing.JButton Pesquisar;
+    private javax.swing.JTextField PesquisarTXTFIELD;
+    private javax.swing.JTextField Preco;
+    private javax.swing.JButton Salvar;
+    private javax.swing.JTextField TipoPlano;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -251,7 +314,8 @@ public class CadPlano extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTablePesquisar;
     // End of variables declaration//GEN-END:variables
 }
