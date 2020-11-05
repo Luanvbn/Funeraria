@@ -23,10 +23,9 @@ public class PlanoDAO {
         conex.conexao();
         PreparedStatement pst;
         try{
-            pst = conex.con.prepareStatement("INSERT INTO plano(Tipo_Plano, Descricao_Plano, preco) VALUES (?,?,?)");
+            pst = conex.con.prepareStatement("INSERT INTO plano(Tipo_Plano, Descricao_Plano) VALUES (?,?)");
             pst.setString(1, plan.getTipo_plano());
             pst.setString(2, plan.getDescricao());
-            pst.setDouble(3, plan.getPreco());
             pst.execute();
             pst.close();
             JOptionPane.showMessageDialog(null, "Plano Cadastrado com Sucesso!!!");
@@ -36,6 +35,23 @@ public class PlanoDAO {
         
         conex.desconecta();
         
+    }
+    public Plano buscarPlano(Plano pla){
+        conex.conexao();
+        conex.executaSQL("select * from plano where Tipo_Plano like '%" + plan.getPesquisar() + "%'");
+        try {
+            conex.rs.first();
+            pla.setIdPlano(conex.rs.getInt("idPlano"));
+            pla.setTipo_plano(conex.rs.getString("Tipo_Plano"));
+            pla.setDescricao(conex.rs.getString("Descricao_Plano"));
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Erro ao inserir dados\n" +ex);
+        }
+        
+        conex.desconecta();
+        return null;
+      
     }
     
 }

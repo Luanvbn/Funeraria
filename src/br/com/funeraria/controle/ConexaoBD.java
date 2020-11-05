@@ -25,6 +25,16 @@ public class ConexaoBD {
      
         }
     }
+    
+    public void executaSQL(String sql){
+        try{
+            stm = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+            rs = stm.executeQuery(sql);
+        } catch(SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ExecutaSQL \n" + ex.getMessage());
+        }
+    }
+    
     public void desconecta(){ // metodo responsavel por desconectar o Banco de dados ao fechar o app!!
         try {
             con.close();

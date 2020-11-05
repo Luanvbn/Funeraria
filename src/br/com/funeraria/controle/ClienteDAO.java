@@ -8,6 +8,8 @@ package br.com.funeraria.controle;
 import br.com.funeraria.model.Cliente;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,6 +48,33 @@ public class ClienteDAO {
         
         conex.desconecta();
     }
-    
+    public Cliente buscaCliente(Cliente cli){
+        conex.conexao();
+        conex.executaSQL("select * from cliente where Nome like '%" + cli.getPesquisa() + "%'");
+        try {
+            conex.rs.first();
+            cli.setId(conex.rs.getInt("idCliente"));
+            cli.setNome(conex.rs.getString("Nome"));
+            cli.setNascimento(conex.rs.getString("nascimento"));
+            cli.setCpf(conex.rs.getString("cpf"));
+            cli.setSexo(conex.rs.getString("sexo"));
+            cli.setTelefone(conex.rs.getInt("Telefone"));
+            cli.setRua(conex.rs.getString("Rua"));
+            cli.setBairro(conex.rs.getString("Bairro"));
+            cli.setNumero(conex.rs.getInt("numero"));
+            cli.setCidade(conex.rs.getString("cidade"));
+            cli.setCep(conex.rs.getInt("cep"));
+            cli.setIdPlano(conex.rs.getInt("idPlano"));
+            
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Erro ao enserir dados\n" +ex);
+        }
+        
+        conex.desconecta();
+        return null;
+      
+    }
+        
 }
     

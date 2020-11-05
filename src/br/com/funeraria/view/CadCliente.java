@@ -115,8 +115,13 @@ public class CadCliente extends javax.swing.JFrame {
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setEnabled(false);
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Editar);
-        Editar.setBounds(12, 100, 80, 23);
+        Editar.setBounds(10, 100, 80, 23);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -289,6 +294,11 @@ public class CadCliente extends javax.swing.JFrame {
         jButtonPesquisar.setBackground(new java.awt.Color(0, 0, 0));
         jButtonPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonPesquisar);
         jButtonPesquisar.setBounds(270, 243, 90, 30);
 
@@ -403,8 +413,60 @@ public class CadCliente extends javax.swing.JFrame {
         jTextFieldTelefone.setEnabled(true);
         jTextFieldNascimento.setEnabled(true);
         jTextFieldNumero.setEnabled(true);
+        jButtonExcluir.setEnabled(false);
+        Editar.setEnabled(false);
         
     }//GEN-LAST:event_jButtonNovoActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // TODO add your handling code here:
+        
+        cliente.setPesquisa(jTextFieldPesquisar.getText());
+        Cliente cli = clidao.buscaCliente(cliente);
+        
+        jTextFieldNome.setText(cliente.getNome());
+        jTextFieldCPF.setText(cliente.getCpf());
+        jTextFieldCidade.setText(cliente.getCidade());
+        jTextFieldCEP.setText(String.valueOf(cliente.getCep()));
+        jTextFieldNumero.setText(String.valueOf(cliente.getNumero()));
+        jTextFieldNascimento.setText(cliente.getNascimento());
+        jTextFieldRua.setText(cliente.getRua());
+        jTextFieldBairro.setText(cliente.getBairro());
+        jTextFieldTelefone.setText(String.valueOf(cliente.getTelefone()));
+        jComboBoxSexo.setSelectedItem(cliente.getSexo());
+        jComboBoxPlano.setSelectedItem(cliente.getIdPlano());
+        
+        jButtonExcluir.setEnabled(true);
+        Editar.setEnabled(true);
+        jButtonSalvar.setEnabled(false);
+        
+        jTextFieldNome.setEnabled(false);
+        jComboBoxSexo.setEnabled(false);
+        jComboBoxPlano.setEnabled(false);
+        jTextFieldCEP.setEnabled(false);
+        jTextFieldBairro.setEnabled(false);
+        jTextFieldCPF.setEnabled(false);
+        jTextFieldCidade.setEnabled(false);
+        jTextFieldRua.setEnabled(false);
+        jTextFieldTelefone.setEnabled(false);
+        jTextFieldNascimento.setEnabled(false);
+        jTextFieldNumero.setEnabled(false);
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        jTextFieldNome.setEnabled(true);
+        jComboBoxSexo.setEnabled(true);
+        jComboBoxPlano.setEnabled(true);
+        jTextFieldCEP.setEnabled(true);
+        jTextFieldBairro.setEnabled(true);
+        jTextFieldCPF.setEnabled(true);
+        jTextFieldCidade.setEnabled(true);
+        jTextFieldRua.setEnabled(true);
+        jTextFieldTelefone.setEnabled(true);
+        jTextFieldNascimento.setEnabled(true);
+        jTextFieldNumero.setEnabled(true);
+    }//GEN-LAST:event_EditarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -12,6 +12,34 @@ package br.com.funeraria.model;
 public class Plano {
 
     /**
+     * @return the idPlano
+     */
+    public int getIdPlano() {
+        return idPlano;
+    }
+
+    /**
+     * @param idPlano the idPlano to set
+     */
+    public void setIdPlano(int idPlano) {
+        this.idPlano = idPlano;
+    }
+
+    /**
+     * @return the pesquisar
+     */
+    public String getPesquisar() {
+        return pesquisar;
+    }
+
+    /**
+     * @param pesquisar the pesquisar to set
+     */
+    public void setPesquisar(String pesquisar) {
+        this.pesquisar = pesquisar;
+    }
+
+    /**
      * @return the tipo_plano
      */
     public String getTipo_plano() {
@@ -42,19 +70,9 @@ public class Plano {
     /**
      * @return the preco
      */
-    public Double getPreco() {
-        return preco;
-    }
-
-    /**
-     * @param preco the preco to set
-     */
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-    
+    private int idPlano;
     private String tipo_plano;
     private String Descricao;
-    private Double preco;
+    private String pesquisar;
     
 }

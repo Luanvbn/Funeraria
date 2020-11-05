@@ -11,6 +11,10 @@ package br.com.funeraria.model;
  */
 public class Usuario {
 
+    /**
+     * @return the pesquisa
+     */
+
 
     private int idUsuario;
     private String usuario;

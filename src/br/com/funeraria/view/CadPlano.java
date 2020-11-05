@@ -8,8 +8,6 @@ package br.com.funeraria.view;
 import br.com.funeraria.controle.PlanoDAO;
 import br.com.funeraria.model.Plano;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +20,7 @@ public class CadPlano extends javax.swing.JFrame {
      * Creates new form CadPlano
     */
     PlanoDAO plan = new PlanoDAO();
-    Plano pl = new Plano();
+    Plano pli = new Plano();
     public CadPlano() {
         initComponents();
     }
@@ -47,13 +45,11 @@ public class CadPlano extends javax.swing.JFrame {
         Excluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Descricao = new javax.swing.JEditorPane();
         TipoPlano = new javax.swing.JTextField();
         PesquisarTXTFIELD = new javax.swing.JTextField();
         Pesquisar = new javax.swing.JButton();
-        Preco = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTablePesquisar = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -151,13 +147,6 @@ public class CadPlano extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(210, 50, 79, 18);
 
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Preço:");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(330, 190, 48, 18);
-
         Descricao.setEnabled(false);
         jScrollPane1.setViewportView(Descricao);
 
@@ -178,12 +167,13 @@ public class CadPlano extends javax.swing.JFrame {
         Pesquisar.setBackground(new java.awt.Color(0, 0, 0));
         Pesquisar.setForeground(new java.awt.Color(255, 255, 255));
         Pesquisar.setText("Pesquisar");
+        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Pesquisar);
         Pesquisar.setBounds(190, 200, 100, 30);
-
-        Preco.setEnabled(false);
-        jPanel1.add(Preco);
-        Preco.setBounds(380, 180, 100, 30);
 
         jTablePesquisar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,20 +211,15 @@ public class CadPlano extends javax.swing.JFrame {
         // TODO add your handling code here:
        TipoPlano.setEnabled(true);
        Descricao.setEnabled(true);
-       Preco.setEnabled(true);
        Salvar.setEnabled(true);
-       Cancelar.setEnabled(true);
-       Editar.setEnabled(true);
-       Excluir.setEnabled(true);
     }//GEN-LAST:event_NovoActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         // TODO add your handling code here:
-        pl.setTipo_plano(TipoPlano.getText());
-        pl.setDescricao(Descricao.getText());
-        pl.setPreco(Double.parseDouble(Preco.getText()));
+        pli.setTipo_plano(TipoPlano.getText());
+        pli.setDescricao(Descricao.getText());
         try {
-            plan.Salvar(pl);
+            plan.Salvar(pli);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
@@ -242,20 +227,24 @@ public class CadPlano extends javax.swing.JFrame {
         
        TipoPlano.setText("");
        Descricao.setText("");
-       Preco.setText("");
        
        TipoPlano.setEnabled(false);
        Descricao.setEnabled(false);
-       Preco.setEnabled(false);
        Salvar.setEnabled(false);
-       Cancelar.setEnabled(false);
-       Editar.setEnabled(false);
-       Excluir.setEnabled(false);
        
        
        
                 
     }//GEN-LAST:event_SalvarActionPerformed
+
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        // TODO add your handling code here:
+        pli.setPesquisar(PesquisarTXTFIELD.getText());
+        Plano pl = plan.buscarPlano(pli);
+        
+        TipoPlano.setText(pl.getTipo_plano());
+        Descricao.setText(pl.getDescricao());
+    }//GEN-LAST:event_PesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,14 +292,12 @@ public class CadPlano extends javax.swing.JFrame {
     private javax.swing.JButton Novo;
     private javax.swing.JButton Pesquisar;
     private javax.swing.JTextField PesquisarTXTFIELD;
-    private javax.swing.JTextField Preco;
     private javax.swing.JButton Salvar;
     private javax.swing.JTextField TipoPlano;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

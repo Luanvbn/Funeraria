@@ -12,6 +12,39 @@ package br.com.funeraria.model;
 public class Cliente {
 
     /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the id
+     */
+
+
+    /**
+     * @return the pesquisa
+     */
+    public String getPesquisa() {
+        return pesquisa;
+    }
+
+    /**
+     * @param pesquisa the pesquisa to set
+     */
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+
+    /**
      * @return the nome
      */
     public String getNome() {
@@ -164,6 +197,7 @@ public class Cliente {
     public void setIdPlano(int idPlano) {
         this.idPlano = idPlano;
     }
+    private int id;
     private String nome;
     private String cpf;
     private String nascimento;
@@ -175,6 +209,7 @@ public class Cliente {
     private String cidade;
     private int cep;
     private int idPlano;
+    private String pesquisa;
     
     
 }
