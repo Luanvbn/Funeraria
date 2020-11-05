@@ -37,6 +37,7 @@ public class CadPlano extends javax.swing.JFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         Novo = new javax.swing.JButton();
         Salvar = new javax.swing.JButton();
@@ -45,13 +46,12 @@ public class CadPlano extends javax.swing.JFrame {
         Excluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Descricao = new javax.swing.JEditorPane();
         TipoPlano = new javax.swing.JTextField();
         PesquisarTXTFIELD = new javax.swing.JTextField();
         Pesquisar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTablePesquisar = new javax.swing.JTable();
+        jTextFieldDescricao = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
@@ -79,6 +79,17 @@ public class CadPlano extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable2);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(525, 490));
@@ -147,12 +158,6 @@ public class CadPlano extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(210, 50, 79, 18);
 
-        Descricao.setEnabled(false);
-        jScrollPane1.setViewportView(Descricao);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(300, 50, 200, 120);
-
         TipoPlano.setEnabled(false);
         TipoPlano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +196,10 @@ public class CadPlano extends javax.swing.JFrame {
         jPanel1.add(jScrollPane4);
         jScrollPane4.setBounds(42, 242, 450, 180);
 
+        jTextFieldDescricao.setEnabled(false);
+        jPanel1.add(jTextFieldDescricao);
+        jTextFieldDescricao.setBounds(300, 50, 200, 140);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 40, 523, 435);
 
@@ -210,14 +219,14 @@ public class CadPlano extends javax.swing.JFrame {
     private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
         // TODO add your handling code here:
        TipoPlano.setEnabled(true);
-       Descricao.setEnabled(true);
+       jTextFieldDescricao.setEnabled(true);
        Salvar.setEnabled(true);
     }//GEN-LAST:event_NovoActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         // TODO add your handling code here:
         pli.setTipo_plano(TipoPlano.getText());
-        pli.setDescricao(Descricao.getText());
+        pli.setDescricao(jTextFieldDescricao.getText());
         try {
             plan.Salvar(pli);
         } catch (SQLException ex) {
@@ -226,10 +235,10 @@ public class CadPlano extends javax.swing.JFrame {
        
         
        TipoPlano.setText("");
-       Descricao.setText("");
+       jTextFieldDescricao.setText("");
        
        TipoPlano.setEnabled(false);
-       Descricao.setEnabled(false);
+       jTextFieldDescricao.setEnabled(false);
        Salvar.setEnabled(false);
        
        
@@ -240,10 +249,10 @@ public class CadPlano extends javax.swing.JFrame {
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
         // TODO add your handling code here:
         pli.setPesquisar(PesquisarTXTFIELD.getText());
-        Plano pl = plan.buscarPlano(pli);
+        Plano pla = plan.buscarPlano(pli);
         
-        TipoPlano.setText(pl.getTipo_plano());
-        Descricao.setText(pl.getDescricao());
+        TipoPlano.setText(pli.getTipo_plano());
+        jTextFieldDescricao.setText(pli.getDescricao());
     }//GEN-LAST:event_PesquisarActionPerformed
 
     /**
@@ -286,7 +295,6 @@ public class CadPlano extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
-    private javax.swing.JEditorPane Descricao;
     private javax.swing.JButton Editar;
     private javax.swing.JButton Excluir;
     private javax.swing.JButton Novo;
@@ -298,11 +306,12 @@ public class CadPlano extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTablePesquisar;
+    private javax.swing.JTextField jTextFieldDescricao;
     // End of variables declaration//GEN-END:variables
 }

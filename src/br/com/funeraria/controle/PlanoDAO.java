@@ -38,7 +38,7 @@ public class PlanoDAO {
     }
     public Plano buscarPlano(Plano pla){
         conex.conexao();
-        conex.executaSQL("select * from plano where Tipo_Plano like '%" + plan.getPesquisar() + "%'");
+        conex.executaSQL("select * from plano where Tipo_Plano like '%" + pla.getPesquisar() + "%'");
         try {
             conex.rs.first();
             pla.setIdPlano(conex.rs.getInt("idPlano"));
@@ -47,6 +47,7 @@ public class PlanoDAO {
             
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Erro ao inserir dados\n" +ex);
+           
         }
         
         conex.desconecta();
