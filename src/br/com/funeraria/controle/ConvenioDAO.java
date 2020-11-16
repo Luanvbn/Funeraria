@@ -38,6 +38,39 @@ public class ConvenioDAO {
         
         conex.desconecta();
     }
+     public void excluir(Convenio conv){
+        conex.conexao();
+        try {
+            PreparedStatement pst = (PreparedStatement) conex.con.prepareStatement("DELETE from convenio where idmedico = ?");
+            pst.setInt(1, conv.getIdmedico());
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Medico Excluido com Sucesso!!!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Medico não foi excluido :(\n" + ex);
+        }
+        conex.desconecta();
+    }
+    
+    public void editar(Convenio conv){
+        conex.conexao();
+        PreparedStatement pst;
+        try {
+            pst = (PreparedStatement) conex.con.prepareStatement("UPDATE convenio set nome=?, CRM=?, especialidade=?, idPlano=? where idmedico=?");
+            pst.setString(1, conv.getNome());
+            pst.setInt(2, conv.getCRM());
+            pst.setString(3, conv.getEspecialidade());
+            pst.setInt(4, conv.getIdPlano());
+            pst.setInt(5, conv.getIdmedico());
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Doutor Alterado com Sucesso!!!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Doutor não foi Alterado :(" + ex);
+        }
+        
+        conex.desconecta();
+    }
     public Convenio buscaConvenio(Convenio conv){
         conex.conexao();
         conex.executaSQL("select * from convenio where nome like '%" + conv.getPesquisar() + "%'");

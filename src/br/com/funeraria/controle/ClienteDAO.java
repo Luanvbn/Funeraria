@@ -48,6 +48,48 @@ public class ClienteDAO {
         
         conex.desconecta();
     }
+    
+    public void excluir(Cliente cliente){
+        conex.conexao();
+        try {
+            PreparedStatement pst = (PreparedStatement) conex.con.prepareStatement("DELETE from Cliente where idCliente = ?");
+            pst.setInt(1, cliente.getId());
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Cliente Excluido com Sucesso!!!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Cliente não foi excluido :(\n" + ex);
+        }
+        conex.desconecta();
+    }
+    
+    public void editar(Cliente cliente){
+        conex.conexao();
+        
+        try {
+            PreparedStatement pst = (PreparedStatement) conex.con.prepareStatement("UPDATE cliente set bairro=?, cep=?, cidade=?, cpf=?, idPlano=?, nascimento=?, Nome=?, numero=?, rua=?, sexo=?, telefone=? where idCliente=?");
+            pst.setString(1, cliente.getBairro());
+            pst.setInt(2, cliente.getCep());
+            pst.setString(3, cliente.getCidade());
+            pst.setString(4, cliente.getCpf());
+            pst.setInt(5, cliente.getIdPlano());
+            pst.setString(6, cliente.getNascimento());
+            pst.setString(7, cliente.getNome());
+            pst.setInt(8, cliente.getNumero());
+            pst.setString(9, cliente.getRua());
+            pst.setString(10, cliente.getSexo());
+            pst.setInt(11, cliente.getTelefone());
+            pst.setInt(12, cliente.getId());
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Dados Alterados com sucesso!!!");
+            
+            } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro na alteração dos dados!!!\n" + ex);
+        }
+        
+        conex.desconecta();
+    }
     public Cliente buscaCliente(Cliente cli){
         conex.conexao();
         conex.executaSQL("select * from cliente where Nome like '%" + cli.getPesquisa() + "%'");

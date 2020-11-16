@@ -7,6 +7,9 @@ package br.com.funeraria.view;
 
 import javax.swing.JOptionPane;
 import br.com.funeraria.controle.ConexaoBD;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,6 +23,7 @@ public class LoginTela extends javax.swing.JFrame {
      */
     ConexaoBD con = new ConexaoBD();
     public LoginTela() {
+        con.conexao();
         initComponents();
     }
 
@@ -67,7 +71,7 @@ public class LoginTela extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JLogin);
-        JLogin.setBounds(110, 200, 66, 27);
+        JLogin.setBounds(110, 200, 65, 25);
 
         JSair.setBackground(new java.awt.Color(34, 33, 59));
         JSair.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -79,7 +83,7 @@ public class LoginTela extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JSair);
-        JSair.setBounds(200, 200, 100, 27);
+        JSair.setBounds(200, 200, 100, 25);
         getContentPane().add(txtLogin);
         txtLogin.setBounds(110, 110, 190, 30);
         getContentPane().add(txtPassword);
@@ -107,14 +111,21 @@ public class LoginTela extends javax.swing.JFrame {
 
     private void JLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JLoginActionPerformed
         // TODO add your handling code here:
-        if(txtPassword.getText().equals("admin") && txtLogin.getText().equals("admin")) {
-            TelaPrincipal tela = new TelaPrincipal();
-            tela.setVisible(true);
-            con.conexao();
-            dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuario ou senha está incorreto"); 
-    }
+        try {
+            con.executaSQL("select * from usuario where usuario = '"+ txtLogin.getText()+"'");
+            con.rs.first();
+            if(con.rs.getString("senha").equals(txtPassword.getText())){
+                TelaPrincipal tela = new TelaPrincipal();
+                tela.setVisible(true);
+                dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Senha ou usuario incorreto!!");
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginTela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         
     }//GEN-LAST:event_JLoginActionPerformed
 

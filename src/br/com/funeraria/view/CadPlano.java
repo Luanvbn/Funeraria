@@ -21,6 +21,7 @@ public class CadPlano extends javax.swing.JFrame {
     */
     PlanoDAO plan = new PlanoDAO();
     Plano pli = new Plano();
+    int flag = 0;
     public CadPlano() {
         initComponents();
     }
@@ -38,7 +39,7 @@ public class CadPlano extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jPanel1 = new javax.swing.JPanel();
+        iD = new javax.swing.JPanel();
         Novo = new javax.swing.JButton();
         Salvar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
@@ -52,6 +53,8 @@ public class CadPlano extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTablePesquisar = new javax.swing.JTable();
         jTextFieldDescricao = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        IdPlano = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
@@ -96,9 +99,9 @@ public class CadPlano extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(36, 32, 58));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(null);
+        iD.setBackground(new java.awt.Color(36, 32, 58));
+        iD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        iD.setLayout(null);
 
         Novo.setBackground(new java.awt.Color(0, 0, 0));
         Novo.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,7 +111,7 @@ public class CadPlano extends javax.swing.JFrame {
                 NovoActionPerformed(evt);
             }
         });
-        jPanel1.add(Novo);
+        iD.add(Novo);
         Novo.setBounds(12, 34, 77, 23);
 
         Salvar.setBackground(new java.awt.Color(0, 0, 0));
@@ -120,42 +123,57 @@ public class CadPlano extends javax.swing.JFrame {
                 SalvarActionPerformed(evt);
             }
         });
-        jPanel1.add(Salvar);
+        iD.add(Salvar);
         Salvar.setBounds(12, 63, 77, 23);
 
         Cancelar.setBackground(new java.awt.Color(0, 0, 0));
         Cancelar.setForeground(new java.awt.Color(255, 255, 255));
         Cancelar.setText("Cancelar");
         Cancelar.setEnabled(false);
-        jPanel1.add(Cancelar);
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+        iD.add(Cancelar);
         Cancelar.setBounds(12, 92, 75, 23);
 
         Editar.setBackground(new java.awt.Color(0, 0, 0));
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setEnabled(false);
-        jPanel1.add(Editar);
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
+        iD.add(Editar);
         Editar.setBounds(12, 121, 77, 23);
 
         Excluir.setBackground(new java.awt.Color(0, 0, 0));
         Excluir.setForeground(new java.awt.Color(255, 255, 255));
         Excluir.setText("Excluir");
         Excluir.setEnabled(false);
-        jPanel1.add(Excluir);
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
+            }
+        });
+        iD.add(Excluir);
         Excluir.setBounds(12, 150, 77, 23);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tipo do Plano:");
-        jPanel1.add(jLabel2);
+        iD.add(jLabel2);
         jLabel2.setBounds(240, 20, 108, 18);
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Descrição:");
-        jPanel1.add(jLabel3);
+        iD.add(jLabel3);
         jLabel3.setBounds(210, 50, 79, 18);
 
         TipoPlano.setEnabled(false);
@@ -164,9 +182,9 @@ public class CadPlano extends javax.swing.JFrame {
                 TipoPlanoActionPerformed(evt);
             }
         });
-        jPanel1.add(TipoPlano);
+        iD.add(TipoPlano);
         TipoPlano.setBounds(350, 10, 150, 30);
-        jPanel1.add(PesquisarTXTFIELD);
+        iD.add(PesquisarTXTFIELD);
         PesquisarTXTFIELD.setBounds(40, 200, 140, 30);
 
         Pesquisar.setBackground(new java.awt.Color(0, 0, 0));
@@ -177,7 +195,7 @@ public class CadPlano extends javax.swing.JFrame {
                 PesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(Pesquisar);
+        iD.add(Pesquisar);
         Pesquisar.setBounds(190, 200, 100, 30);
 
         jTablePesquisar.setModel(new javax.swing.table.DefaultTableModel(
@@ -193,15 +211,25 @@ public class CadPlano extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(jTablePesquisar);
 
-        jPanel1.add(jScrollPane4);
+        iD.add(jScrollPane4);
         jScrollPane4.setBounds(42, 242, 450, 180);
 
         jTextFieldDescricao.setEnabled(false);
-        jPanel1.add(jTextFieldDescricao);
+        iD.add(jTextFieldDescricao);
         jTextFieldDescricao.setBounds(300, 50, 200, 140);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 40, 523, 435);
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("ID:");
+        iD.add(jLabel4);
+        jLabel4.setBounds(310, 210, 18, 18);
+
+        IdPlano.setEnabled(false);
+        iD.add(IdPlano);
+        IdPlano.setBounds(330, 210, 90, 20);
+
+        getContentPane().add(iD);
+        iD.setBounds(0, 40, 523, 435);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Planos");
@@ -218,13 +246,23 @@ public class CadPlano extends javax.swing.JFrame {
 
     private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
         // TODO add your handling code here:
+        flag = 1;
+        TipoPlano.setText("");
+       jTextFieldDescricao.setText("");
+        
        TipoPlano.setEnabled(true);
        jTextFieldDescricao.setEnabled(true);
        Salvar.setEnabled(true);
+       Editar.setEnabled(false);
+       Cancelar.setEnabled(true);
+       
+       
+    
     }//GEN-LAST:event_NovoActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         // TODO add your handling code here:
+        if(flag == 1){
         pli.setTipo_plano(TipoPlano.getText());
         pli.setDescricao(jTextFieldDescricao.getText());
         try {
@@ -240,7 +278,19 @@ public class CadPlano extends javax.swing.JFrame {
        TipoPlano.setEnabled(false);
        jTextFieldDescricao.setEnabled(false);
        Salvar.setEnabled(false);
+        } else{
+            pli.setIdPlano(Integer.parseInt(IdPlano.getText()));
+            pli.setTipo_plano(TipoPlano.getText());
+            pli.setDescricao(jTextFieldDescricao.getText());
+            plan.editar(pli);
+            
+            TipoPlano.setText("");
+       jTextFieldDescricao.setText("");
        
+       TipoPlano.setEnabled(false);
+       jTextFieldDescricao.setEnabled(false);
+       Salvar.setEnabled(false);
+        }
        
        
                 
@@ -251,9 +301,63 @@ public class CadPlano extends javax.swing.JFrame {
         pli.setPesquisar(PesquisarTXTFIELD.getText());
         Plano pla = plan.buscarPlano(pli);
         
+        Salvar.setEnabled(false);
+        
         TipoPlano.setText(pli.getTipo_plano());
+        IdPlano.setText(String.valueOf(pli.getIdPlano()));
         jTextFieldDescricao.setText(pli.getDescricao());
+        
+        Editar.setEnabled(true);
+        Excluir.setEnabled(true);
+        
+       
     }//GEN-LAST:event_PesquisarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        flag =2;
+        Salvar.setEnabled(true);
+        Cancelar.setEnabled(true);
+        
+         TipoPlano.setEnabled(true);
+         jTextFieldDescricao.setEnabled(true);
+         Salvar.setEnabled(true);
+         
+         Editar.setEnabled(false);
+        Excluir.setEnabled(false);
+        Novo.setEnabled(false);
+        Cancelar.setEnabled(true);
+        
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+        TipoPlano.setEnabled(!true);
+       jTextFieldDescricao.setEnabled(!true);
+       Salvar.setEnabled(!true);
+       Editar.setEnabled(false);
+       Excluir.setEnabled(false);
+       Cancelar.setEnabled(!true);
+    }//GEN-LAST:event_CancelarActionPerformed
+
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
+        // TODO add your handling code here:
+        int resposta = 0;
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir?");
+        if(resposta == JOptionPane.YES_OPTION){
+            pli.setIdPlano(Integer.parseInt(IdPlano.getText()));
+            plan.excluir(pli);
+            
+        
+        }
+        TipoPlano.setText("");
+       jTextFieldDescricao.setText("");
+       IdPlano.setText("");
+       
+       TipoPlano.setEnabled(false);
+       jTextFieldDescricao.setEnabled(false);
+       Salvar.setEnabled(false);
+    }//GEN-LAST:event_ExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,17 +401,19 @@ public class CadPlano extends javax.swing.JFrame {
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Editar;
     private javax.swing.JButton Excluir;
+    private javax.swing.JTextField IdPlano;
     private javax.swing.JButton Novo;
     private javax.swing.JButton Pesquisar;
     private javax.swing.JTextField PesquisarTXTFIELD;
     private javax.swing.JButton Salvar;
     private javax.swing.JTextField TipoPlano;
+    private javax.swing.JPanel iD;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;

@@ -7,6 +7,7 @@ package br.com.funeraria.view;
 
 import br.com.funeraria.controle.ConvenioDAO;
 import br.com.funeraria.model.Convenio;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,7 @@ public class CadConvenio extends javax.swing.JFrame {
      */
     Convenio conv =  new Convenio();
     ConvenioDAO condao =  new ConvenioDAO();
+    int flag = 0;
     public CadConvenio() {
         initComponents();
     }
@@ -51,6 +53,8 @@ public class CadConvenio extends javax.swing.JFrame {
         jTextFieldEspecialidade = new javax.swing.JTextField();
         jTextFieldPesquisar = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jTextField3.setText("jTextField3");
@@ -95,11 +99,21 @@ public class CadConvenio extends javax.swing.JFrame {
         Editar.setForeground(new java.awt.Color(255, 255, 255));
         Editar.setText("Editar");
         Editar.setEnabled(false);
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
 
         Excluir.setBackground(new java.awt.Color(0, 0, 0));
         Excluir.setForeground(new java.awt.Color(255, 255, 255));
         Excluir.setText("Excluir");
         Excluir.setEnabled(false);
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -148,32 +162,16 @@ public class CadConvenio extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("ID:");
+
+        id.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Novo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(89, 89, 89)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3))
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1NDoutor, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextFieldEspecialidade, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldCRM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
-                .addContainerGap(125, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,6 +181,32 @@ public class CadConvenio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Novo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1NDoutor, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPlano, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextFieldEspecialidade, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextFieldCRM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +218,11 @@ public class CadConvenio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Salvar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jTextField1NDoutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -225,11 +253,11 @@ public class CadConvenio extends javax.swing.JFrame {
                         .addComponent(Editar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Excluir)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 40, 668, 412);
+        jPanel1.setBounds(0, 40, 668, 414);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Convênio");
@@ -242,11 +270,20 @@ public class CadConvenio extends javax.swing.JFrame {
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
+        jTextField1NDoutor.setEnabled(!true);
+        jTextFieldCRM.setEnabled(!true);
+        jTextFieldEspecialidade.setEnabled(!true);
+        jComboBoxPlano.setEnabled(!true);
+        Salvar.setEnabled(!true);
+        Editar.setEnabled(false);
+        Cancelar.setEnabled(!true);
+        Novo.setEnabled(!false);
+        Excluir.setEnabled(!true);
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
         // TODO add your handling code here:
-        
+        flag = 1;
         jTextField1NDoutor.setText("");
         jTextFieldCRM.setText("");
         jTextFieldEspecialidade.setText("");
@@ -258,12 +295,13 @@ public class CadConvenio extends javax.swing.JFrame {
         Salvar.setEnabled(true);
         Excluir.setEnabled(false);
         Editar.setEnabled(false);
-        
+        Cancelar.setEnabled(true);
+        Novo.setEnabled(false);
     }//GEN-LAST:event_NovoActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         // TODO add your handling code here:
-        
+        if(flag == 1){
     
         conv.setNome(jTextField1NDoutor.getText());
         conv.setCRM(Integer.parseInt(jTextFieldCRM.getText()));
@@ -289,7 +327,32 @@ public class CadConvenio extends javax.swing.JFrame {
         jTextFieldEspecialidade.setEnabled(false);
         jComboBoxPlano.setEnabled(false);
         Salvar.setEnabled(false);
+        }else{
+            conv.setIdmedico(Integer.parseInt(id.getText()));
+            conv.setNome(jTextField1NDoutor.getText());
+            conv.setCRM(Integer.parseInt(jTextFieldCRM.getText()));
+            conv.setEspecialidade(jTextFieldEspecialidade.getText());
         
+            if(jComboBoxPlano.getSelectedItem().equals("Bronze")){
+                conv.setIdPlano(1);
+            } else if(jComboBoxPlano.getSelectedItem().equals("Prata")){
+                conv.setIdPlano(2);
+            } else if(jComboBoxPlano.getSelectedItem().equals("Gold")){
+                conv.setIdPlano(3);
+        }
+            condao.editar(conv);
+            
+            jTextField1NDoutor.setText("");
+        jTextFieldCRM.setText("");
+        jTextFieldEspecialidade.setText("");
+        
+        
+        jTextField1NDoutor.setEnabled(false);
+        jTextFieldCRM.setEnabled(false);
+        jTextFieldEspecialidade.setEnabled(false);
+        jComboBoxPlano.setEnabled(false);
+        Salvar.setEnabled(false);
+        }
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -301,11 +364,63 @@ public class CadConvenio extends javax.swing.JFrame {
         jTextFieldCRM.setText(String.valueOf(conv.getCRM()));
         jTextFieldEspecialidade.setText(conv.getEspecialidade());
         jComboBoxPlano.setSelectedItem(conv.getIdPlano());
+        id.setText(String.valueOf(conv.getIdmedico()));
         
         Excluir.setEnabled(true);
         Editar.setEnabled(true);
         Salvar.setEnabled(false);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        flag = 2;
+        Salvar.setEnabled(true);
+        Cancelar.setEnabled(true);
+        Excluir.setEnabled(true);
+        
+        jTextField1NDoutor.setEnabled(true);
+        jTextFieldCRM.setEnabled(true);
+        jTextFieldEspecialidade.setEnabled(true);
+        jComboBoxPlano.setEnabled(true);
+        Salvar.setEnabled(true);
+        
+        Excluir.setEnabled(false);
+        Editar.setEnabled(false);
+        Novo.setEnabled(false);
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
+        // TODO add your handling code here:
+        int resposta = 0;
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente Excluir!?");
+        
+        if(resposta == JOptionPane.YES_OPTION){
+            conv.setIdmedico(Integer.parseInt(id.getText()));
+            condao.excluir(conv);
+            
+            
+           
+        }
+        Salvar.setEnabled(!true);
+            Cancelar.setEnabled(!true);
+        
+            jTextField1NDoutor.setEnabled(!true);
+            jTextFieldCRM.setEnabled(!true);
+            jTextFieldEspecialidade.setEnabled(!true);
+            jComboBoxPlano.setEnabled(!true);
+            Salvar.setEnabled(!true);
+        
+            Excluir.setEnabled(false);
+            Editar.setEnabled(false);
+            Novo.setEnabled(!false);
+            
+            jTextField1NDoutor.setText("");
+            jTextFieldCRM.setText("");
+            jTextFieldEspecialidade.setText("");
+            id.setText("");
+        
+        
+    }//GEN-LAST:event_ExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,6 +463,7 @@ public class CadConvenio extends javax.swing.JFrame {
     private javax.swing.JButton Excluir;
     private javax.swing.JButton Novo;
     private javax.swing.JButton Salvar;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBoxPlano;
     private javax.swing.JLabel jLabel1;
@@ -355,6 +471,7 @@ public class CadConvenio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

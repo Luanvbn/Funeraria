@@ -7,6 +7,7 @@ package br.com.funeraria.view;
 
 import br.com.funeraria.controle.*;
 import br.com.funeraria.model.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,7 @@ public class CadCliente extends javax.swing.JFrame {
      */
     Cliente cliente = new Cliente();
     ClienteDAO clidao =  new ClienteDAO();
+    int flag = 0;
     
     public CadCliente() {
         initComponents();
@@ -66,6 +68,8 @@ public class CadCliente extends javax.swing.JFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxPlano = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jTCod = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Usuario");
@@ -108,6 +112,11 @@ public class CadCliente extends javax.swing.JFrame {
         jButtonCancelar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.setEnabled(false);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonCancelar);
         jButtonCancelar.setBounds(12, 71, 80, 23);
 
@@ -158,6 +167,11 @@ public class CadCliente extends javax.swing.JFrame {
         jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.setEnabled(false);
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonExcluir);
         jButtonExcluir.setBounds(12, 129, 80, 23);
 
@@ -313,6 +327,16 @@ public class CadCliente extends javax.swing.JFrame {
         jPanel1.add(jComboBoxPlano);
         jComboBoxPlano.setBounds(260, 170, 90, 30);
 
+        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("ID:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(550, 210, 21, 18);
+
+        jTCod.setEnabled(false);
+        jPanel1.add(jTCod);
+        jTCod.setBounds(580, 210, 59, 30);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 40, 970, 550);
 
@@ -330,6 +354,7 @@ public class CadCliente extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
+        if(flag == 1){
         cliente.setNome(jTextFieldNome.getText());
         cliente.setCpf(jTextFieldCPF.getText());
         cliente.setCidade(jTextFieldCidade.getText());
@@ -371,6 +396,51 @@ public class CadCliente extends javax.swing.JFrame {
         jTextFieldTelefone.setEnabled(false);
         jTextFieldNascimento.setEnabled(false);
         jTextFieldNumero.setEnabled(false);
+        } else{
+            cliente.setId(Integer.parseInt(jTCod.getText()));
+            cliente.setNome(jTextFieldNome.getText());
+            cliente.setCpf(jTextFieldCPF.getText());
+            cliente.setCidade(jTextFieldCidade.getText());
+            cliente.setCep(Integer.parseInt(jTextFieldCEP.getText()));
+            cliente.setNumero(Integer.parseInt(jTextFieldNumero.getText()));
+            cliente.setNascimento(jTextFieldNascimento.getText());
+            cliente.setSexo((String) jComboBoxSexo.getSelectedItem());
+            if(jComboBoxPlano.getSelectedItem().equals("Bronze")){
+                cliente.setIdPlano(1);
+            } else if(jComboBoxPlano.getSelectedItem().equals("Prata")){
+                cliente.setIdPlano(2);
+            } else if(jComboBoxPlano.getSelectedItem().equals("Gold")){
+                cliente.setIdPlano(3);
+            }
+            cliente.setRua(jTextFieldRua.getText());
+            cliente.setBairro(jTextFieldBairro.getText());
+            cliente.setTelefone(Integer.parseInt(jTextFieldTelefone.getText()));
+            clidao.editar(cliente);
+            
+            jTextFieldNome.setText("");
+            jTextFieldCPF.setText("");
+            jTextFieldCidade.setText("");
+            jTextFieldCEP.setText("");
+            jTextFieldNumero.setText("");
+            jTextFieldNascimento.setText("");
+            jTextFieldRua.setText("");
+            jTextFieldBairro.setText("");
+            jTextFieldTelefone.setText("");
+        
+            jButtonSalvar.setEnabled(false);
+            jTextFieldNome.setEnabled(false);
+            jComboBoxSexo.setEnabled(false);
+            jComboBoxPlano.setEnabled(false);
+            jTextFieldCEP.setEnabled(false);
+            jTextFieldBairro.setEnabled(false);
+            jTextFieldCPF.setEnabled(false);
+            jTextFieldCidade.setEnabled(false);
+            jTextFieldRua.setEnabled(false);
+            jTextFieldTelefone.setEnabled(false);
+            jTextFieldNascimento.setEnabled(false);
+            jTextFieldNumero.setEnabled(false);
+            
+        }
         
         
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -401,6 +471,17 @@ public class CadCliente extends javax.swing.JFrame {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
+        flag = 1;
+        jTextFieldNome.setText("");
+        jTextFieldCPF.setText("");
+        jTextFieldCidade.setText("");
+        jTextFieldCEP.setText("");
+        jTextFieldNumero.setText("");
+        jTextFieldNascimento.setText("");
+        jTextFieldRua.setText("");
+        jTextFieldBairro.setText("");
+        jTextFieldTelefone.setText("");
+        
         jButtonSalvar.setEnabled(true);
         jTextFieldNome.setEnabled(true);
         jComboBoxSexo.setEnabled(true);
@@ -424,6 +505,7 @@ public class CadCliente extends javax.swing.JFrame {
         cliente.setPesquisa(jTextFieldPesquisar.getText());
         Cliente cli = clidao.buscaCliente(cliente);
         
+        jTCod.setText(String.valueOf(cliente.getId()));
         jTextFieldNome.setText(cliente.getNome());
         jTextFieldCPF.setText(cliente.getCpf());
         jTextFieldCidade.setText(cliente.getCidade());
@@ -439,6 +521,7 @@ public class CadCliente extends javax.swing.JFrame {
         jButtonExcluir.setEnabled(true);
         Editar.setEnabled(true);
         jButtonSalvar.setEnabled(false);
+        jButtonCancelar.setEnabled(true);
         
         jTextFieldNome.setEnabled(false);
         jComboBoxSexo.setEnabled(false);
@@ -451,10 +534,13 @@ public class CadCliente extends javax.swing.JFrame {
         jTextFieldTelefone.setEnabled(false);
         jTextFieldNascimento.setEnabled(false);
         jTextFieldNumero.setEnabled(false);
+        
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
+        
+        flag = 2;
         jTextFieldNome.setEnabled(true);
         jComboBoxSexo.setEnabled(true);
         jComboBoxPlano.setEnabled(true);
@@ -466,7 +552,59 @@ public class CadCliente extends javax.swing.JFrame {
         jTextFieldTelefone.setEnabled(true);
         jTextFieldNascimento.setEnabled(true);
         jTextFieldNumero.setEnabled(true);
+        Editar.setEnabled(false);
+        jButtonCancelar.setEnabled(true);
+        jButtonExcluir.setEnabled(false);
+        jButtonSalvar.setEnabled(true);
+        jButtonNovo.setEnabled(false);
     }//GEN-LAST:event_EditarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        jButtonCancelar.setEnabled(!true);
+        jButtonExcluir.setEnabled(false);
+        jButtonSalvar.setEnabled(!true);
+        jButtonNovo.setEnabled(!false);
+        Editar.setEnabled(false);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+        int resposta = 0;
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente Excluir?");
+        if(resposta == JOptionPane.YES_OPTION){
+            cliente.setId(Integer.parseInt(jTCod.getText()));
+            clidao.excluir(cliente);
+            
+           
+        }
+            jTextFieldNome.setText("");
+            jTextFieldCPF.setText("");
+            jTextFieldCidade.setText("");
+            jTextFieldCEP.setText("");
+            jTextFieldNumero.setText("");
+            jTextFieldNascimento.setText("");
+            jTextFieldRua.setText("");
+            jTextFieldBairro.setText("");
+            jTextFieldTelefone.setText("");
+            
+            jButtonExcluir.setEnabled(!true);
+            Editar.setEnabled(!true);
+            jButtonSalvar.setEnabled(false);
+            jButtonCancelar.setEnabled(!true);
+        
+            jTextFieldNome.setEnabled(false);
+            jComboBoxSexo.setEnabled(false);
+            jComboBoxPlano.setEnabled(false);
+            jTextFieldCEP.setEnabled(false);
+            jTextFieldBairro.setEnabled(false);
+            jTextFieldCPF.setEnabled(false);
+            jTextFieldCidade.setEnabled(false);
+            jTextFieldRua.setEnabled(false);
+            jTextFieldTelefone.setEnabled(false);
+            jTextFieldNascimento.setEnabled(false);
+            jTextFieldNumero.setEnabled(false);
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,11 +660,13 @@ public class CadCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTCod;
     private javax.swing.JTable jTableUsuario;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCEP;
